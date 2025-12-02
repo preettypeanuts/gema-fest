@@ -33,7 +33,7 @@ export default function HighlightSection() {
     return (
         <>
             <div>
-                <h1 className="text-center mb-10 text-5xl font-heading font-bold">
+                <h1 className="md:mx-10 mx-4 text-center mb-10 text-3xl md:text-5xl font-heading font-bold">
                     Kenapa Kamu Harus Datang ke {" "}
                     <span className="bg-linear-to-br from-white via-white to-amber-400 bg-clip-text text-transparent">
                         GEMA Fest 2026?

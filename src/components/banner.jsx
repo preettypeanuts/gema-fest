@@ -112,7 +112,7 @@ export const Banner = () => {
         <>
             <section className="px-4 sm:px-6 md:px-10 py-6 sm:py-8 md:py-10 min-h-[calc(100vh-2rem)] md:h-[calc(100vh-10lvh)] space-y-6 sm:space-y-8 md:space-y-10">
                 <motion.div
-                    className="h-[30vh] sm:h-[40vh] md:h-[50lvh] rounded-main relative "
+                    className="h-[40vh] md:h-[50lvh] rounded-main relative "
                     initial="hidden"
                     animate="visible"
                     variants={fadeInDown}
@@ -254,22 +254,26 @@ export const Banner = () => {
                                     }
                                 }}
                             >
-                                <motion.button
-                                    className="text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 bg-white text-black rounded-full cursor-pointer duration-300"
-                                    variants={buttonVariants}
-                                    whileHover="hover"
-                                    whileTap="tap"
-                                >
-                                    Daftar Jadi Tenant
-                                </motion.button>
-                                <motion.button
-                                    className="text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 bg-black/10 border border-neutral-400/20 text-white backdrop-blur-sm rounded-full cursor-pointer duration-300"
-                                    variants={buttonVariants}
-                                    whileHover="hover"
-                                    whileTap="tap"
-                                >
-                                    Explore Event
-                                </motion.button>
+                                <a href="https://api.whatsapp.com/send?phone=6281292749915">
+                                    <motion.button
+                                        className="text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 bg-white text-black rounded-full cursor-pointer duration-300"
+                                        variants={buttonVariants}
+                                        whileHover="hover"
+                                        whileTap="tap"
+                                    >
+                                        Daftar Jadi Tenant
+                                    </motion.button>
+                                </a>
+                                <a href="#event">
+                                    <motion.button
+                                        className="text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 bg-black/10 border border-neutral-400/20 text-white backdrop-blur-sm rounded-full cursor-pointer duration-300"
+                                        variants={buttonVariants}
+                                        whileHover="hover"
+                                        whileTap="tap"
+                                    >
+                                        Explore Event
+                                    </motion.button>
+                                </a>
                             </motion.div>
                         </motion.div>
                     </motion.div>

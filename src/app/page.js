@@ -9,10 +9,19 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <Banner />
-      <About/>
-      <HighlightSection/>
-      <Events/>
+      <section id="home">
+        <Banner />
+      </section>
+      <section id="about">
+        <About />
+      </section>
+      <section id="why-us">
+        <HighlightSection />
+      </section>
+      <section id="event">
+        <Events />
+      </section>
+
     </>
   );
 }
