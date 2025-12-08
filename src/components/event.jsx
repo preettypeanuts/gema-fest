@@ -97,11 +97,11 @@ export const Events = () => {
         <section className='margin spacing'>
             {/* Header: Title + Navigation */}
             <div className="flex items-center justify-between mb-4 md:mb-6">
-                <div className='bg-linear-to-bl from-white via-white to-mainColor bg-clip-text text-transparent'>
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+                <div className='bg-linear-to-bl from-darkColor via-dafrom-darkColor to-mainColor bg-clip-text text-transparent'>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-dafrom-darkColor">
                         Event Highlights
                     </h2>
-                    <p className="text-sm sm:text-base text-white/60 mt-1">
+                    <p className="text-sm sm:text-base text-dafrom-darkColor/60 mt-1">
                         Discover what awaits you
                     </p>
                 </div>
@@ -112,7 +112,7 @@ export const Events = () => {
                         onClick={prevSlide}
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)}
-                        className="relative w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-full transition-all duration-300 flex items-center justify-center border border-white/20"
+                        className="relative w-10 h-10 sm:w-12 sm:h-12 bg-darkColor/10 hover:bg-darkColor/20 backdrop-blur-sm text-dabg-darkColor rounded-full transition-all duration-300 flex items-center justify-center border border-dabg-darkColor/20"
                     >
                         <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -124,7 +124,7 @@ export const Events = () => {
                         onClick={nextSlide}
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)}
-                        className="relative w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-full transition-all duration-300 flex items-center justify-center border border-white/20"
+                        className="relative w-10 h-10 sm:w-12 sm:h-12 bg-darkColor/10 hover:bg-darkColor/20 backdrop-blur-sm text-dabg-darkColor rounded-full transition-all duration-300 flex items-center justify-center border border-dabg-darkColor/20"
                     >
                         {/* Circular Progress SVG */}
                         <svg
@@ -190,16 +190,14 @@ export const Events = () => {
                                 className="absolute inset-0 bg-cover bg-center"
                                 style={{ backgroundImage: `url(${feature.bgImage})` }}
                             >
-                                {/* Gradient Overlay */}
-                                {/* <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-black/40" /> */}
                             </div>
 
                             {/* Title Badge - Top Left */}
-                            <div className="absolute top-0 left-0 bg-black rounded-br-3xl">
-                                <div className="bg-black rounded-out-lb-main"></div>
-                                <div className="bg-black rounded-out-tr-main"></div>
+                            <div className="absolute top-0 left-0 bg-white rounded-br-[35px]">
+                                <div className="bg-white rounded-out-lb-main"></div>
+                                <div className="bg-white rounded-out-tr-main"></div>
                                 <div className="text-sm sm:text-lg font-semibold tracking-wider">
-                                    <div className="max-w-[280px] sm:max-w-sm w-fit text-white bg-darkColor rounded-main p-4 mr-2 mb-2">
+                                    <div className="max-w-[280px] sm:max-w-sm w-fit text-white bg-darkColor rounded-main pl-6 py-4 pr-4 mr-2 mb-2">
                                         <h3 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold leading-tight">
                                             <span className='bg-linear-to-br from-white via-white to-thirdColor bg-clip-text text-transparent'>
                                                 {feature.title}
@@ -226,7 +224,7 @@ export const Events = () => {
                             key={index}
                             onClick={() => goToSlide(index)}
                             className={`h-2 rounded-full transition-all duration-300 ${currentSlide === index
-                                    ? 'bg-mainColor w-6'
+                                    ? 'bg-thirdColor w-6'
                                     : 'bg-white/50 hover:bg-white/75 w-2'
                                 }`}
                         />

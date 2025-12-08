@@ -1,11 +1,7 @@
 "use client"
-import Image from "next/image"
 import { useState, useEffect } from "react"
 import { Coolshape } from "coolshapes-react";
-import { motion, AnimatePresence } from "framer-motion"
-import { MdLocationPin } from "react-icons/md";
-import { IoCalendarClear } from "react-icons/io5";
-import { TbClockHour10Filled } from "react-icons/tb";
+import { motion } from "framer-motion"
 
 const images = [
     "https://images.unsplash.com/photo-1639664342827-2d68822c55c9?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -75,31 +71,13 @@ const buttonVariants = {
     tap: { scale: 0.95 }
 }
 
-const imageSlideVariants = {
-    enter: {
-        opacity: 0,
-        scale: 1.1,
-    },
-    center: {
-        opacity: 1,
-        scale: 1,
-        transition: {
-            duration: 1,
-            ease: [0.25, 0.46, 0.45, 0.94]
-        }
-    },
-    exit: {
-        opacity: 0,
-        scale: 1.05,
-        transition: {
-            duration: 0.8
-        }
-    }
-}
-
 export const Banner = () => {
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [scale, setScale] = useState(0.95)
+    const [rounded, setRounded] = useState(24)
+    const [margin, setMargin] = useState(80)
 
+    // Image carousel effect
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
@@ -108,55 +86,29 @@ export const Banner = () => {
         return () => clearInterval(interval)
     }, [])
 
+    // Scroll effect - image scales up and fills margin on scroll
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY
+            const maxScroll = 300
+
+            const newScale = Math.min(0.95 + (scrollY / maxScroll) * 3, 1)
+            const newRounded = Math.max(24 - Math.floor((scrollY / maxScroll) * 24), 0)
+            const newMargin = Math.max(80 - Math.floor((scrollY / maxScroll) * 40), 0)
+
+            setScale(newScale)
+            setRounded(newRounded)
+            setMargin(newMargin)
+        }
+
+        window.addEventListener("scroll", handleScroll)
+        return () => window.removeEventListener("scroll", handleScroll)
+    }, [])
+
     return (
         <>
-            <section className="px-4 sm:px-6 md:px-10 py-6 sm:py-8 md:py-10 min-h-[calc(100vh-2rem)] md:h-[calc(100vh-10lvh)] space-y-6 sm:space-y-8 md:space-y-10">
-                <motion.div
-                    className="h-[40vh] md:h-[50lvh] rounded-main relative "
-                    initial="hidden"
-                    animate="visible"
-                    variants={fadeInDown}
-                >
 
-                    {images.map((src, index) => (
-                        <Image
-                            key={index}
-                            fill
-                            className={`rounded-main w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === currentIndex ? "opacity-100" : "opacity-0"}`}
-                            src={src}
-                            alt={`banner image ${index + 1}`}
-                            priority={index === 0}
-                        />
-                    ))}
-                    {images.map((src, index) => (
-                        <Image
-                            key={index}
-                            width={1}
-                            height={1}
-                            className={`absolute blur-3xl scale-x-103 scale-y-110 saturate-200 -z-50 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === currentIndex ? "opacity-50" : "opacity-0"}`}
-                            src={src}
-                            alt={`banner image ${index + 1}`}
-                            priority={index === 0}
-                        />
-                    ))}
-
-                    <div className="absolute right-0 bottom-0">
-                        <div className="rounded-secondary bg-white/10 text-white border border-neutral-500/20 backdrop-blur-sm px-4 py-2.5 m-1 font-medium">
-                            <h1 className="flex items-center gap-1 opacity-70">
-                                <MdLocationPin />
-                                Lucky Lex Mall
-                            </h1>
-                            <p className="flex items-center gap-1 opacity-70">
-                                <IoCalendarClear /> 18 Februari - 18 Maret 2026
-                            </p>
-                            <p className="flex items-center gap-1 opacity-70">
-                                <TbClockHour10Filled /> 15:00 - 22:00 WIB
-                            </p>
-                        </div>
-                    </div>
-                </motion.div>
-
-
+            <section className="px-4 sm:px-6 md:px-10 pt-10 sm:pt-8 md:pt-10 md:pb-3 space-y-6 sm:space-y-8 md:space-y-10">
                 <motion.div
                     className="grid grid-cols-1 lg:grid-cols-10 gap-6 sm:gap-8 md:gap-10 z-100"
                     initial="hidden"
@@ -169,7 +121,7 @@ export const Banner = () => {
                         variants={fadeInLeft}
                     >
                         <motion.span
-                            className="bg-linear-to-br from-white via-white to-violet-300 bg-clip-text text-transparent inline-block"
+                            className="bg-linear-to-br from-darkColor via-darkColor to-130% to-yellow-300 bg-clip-text text-transparent inline-block"
                             initial={{ opacity: 0, y: 100, rotateX: -90 }}
                             animate={{ opacity: 1, y: 0, rotateX: 0 }}
                             transition={{
@@ -228,11 +180,11 @@ export const Banner = () => {
                         variants={fadeInRight}
                     >
                         <motion.div
-                            className="flex flex-col justify-between gap-6 sm:gap-8 text-justify"
+                            className="flex flex-col justify-between gap-6 sm:gap-8 text-justify p-6 bg-linear-to-br from-darkColor via-darkColor to-mainColor from-50% via-50% rounded-main"
                             variants={staggerContainer}
                         >
                             <motion.p
-                                className="text-white text-sm sm:text-base max-w-sm lg:max-w-sm"
+                                className="text-white text-sm sm:text-base max-w-sm lg:max-w-sm font-medium"
                                 variants={fadeInUp}
                                 initial="hidden"
                                 animate="visible"
@@ -256,7 +208,7 @@ export const Banner = () => {
                             >
                                 <a href="https://api.whatsapp.com/send?phone=6281292749915">
                                     <motion.button
-                                        className="text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 bg-white text-black rounded-full cursor-pointer duration-300"
+                                        className="text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 bg-white text-black rounded-full cursor-pointer duration-300"
                                         variants={buttonVariants}
                                         whileHover="hover"
                                         whileTap="tap"
@@ -266,7 +218,7 @@ export const Banner = () => {
                                 </a>
                                 <a href="#event">
                                     <motion.button
-                                        className="text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 bg-black/10 border border-neutral-400/20 text-white backdrop-blur-sm rounded-full cursor-pointer duration-300"
+                                        className="text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 bg-black/10 border border-neutral-400/20 text-white backdrop-blur-sm rounded-full cursor-pointer duration-300"
                                         variants={buttonVariants}
                                         whileHover="hover"
                                         whileTap="tap"

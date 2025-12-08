@@ -1,20 +1,21 @@
 import { About } from "@/components/about";
 import { Banner } from "@/components/banner";
-import { Events } from "@/components/event";
-import { Hero } from "@/components/hero";
-import { Navbar } from "@/components/navbar";
+import { Contacts } from "@/components/contacts";
+import { RunningImage } from "@/components/running-image";
+import { Faq } from "@/components/faqs";
+import Events from "@/components/event";
 import HighlightSection from "@/components/why-us";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <section id="home">
-        <Banner />
-      </section>
+      <Banner />
+      <RunningImage />
+
       <section id="about">
         <About />
       </section>
+
       <section id="why-us">
         <HighlightSection />
       </section>
@@ -22,6 +23,13 @@ export default function Home() {
         <Events />
       </section>
 
+      <section id="faq">
+        <Faq />
+      </section>
+
+      <section id="contact">
+        <Contacts />
+      </section>
     </>
   );
 }
