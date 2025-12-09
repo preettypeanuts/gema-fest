@@ -45,7 +45,7 @@ export const Footer = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={containerVariants}
-            className="m-4 md:m-10 bg-linear-to-br from-darkColor via-darkColor to-mainColor to-170% p-4 md:p-10 rounded-main mb-20 md:mb-0"
+            className="m-4 md:m-10 bg-linear-to-br from-darkColor via-darkColor to-mainColor to-170% p-4 md:p-10 rounded-main mb-20 md:mb-10"
         >
             <div className="mx-auto grid md:grid-cols-3 gap-10">
 
