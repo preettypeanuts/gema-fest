@@ -127,10 +127,10 @@ export default function HighlightSection() {
                                 filter: "blur(40px) saturate(1.5)"
                             }}
                             transition={{ duration: 0.5 }}
-                            className="absolute -right-15 top-1/2 -translate-y-1/2"
+                            className="absolute right-0 md:-right-15 top-1/2 -translate-y-1/2"
                         >
                             <Coolshape
-                                className="absolute -right-15 top-1/2 -translate-y-1/2 size-40 group-active:scale-1000 group-active:blur-3xl md:size-70 text-primary mb-4 group-hover:scale-400 group-hover:rotate-50 group-hover:spin-slow group-hover:saturate-150 group-hover:blur-2xl duration-500 z-0"
+                                className="absolute right-0 md:-right-15 top-1/2 -translate-y-1/2 size-40 group-active:scale-1000 group-active:blur-3xl group-active:rotate-12 md:size-70 text-primary mb-4 group-hover:scale-400 group-hover:rotate-50 group-hover:spin-slow group-hover:saturate-150 group-hover:blur-2xl duration-500 z-0"
                             />
                         </motion.div>
 

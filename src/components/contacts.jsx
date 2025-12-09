@@ -4,7 +4,7 @@ import { contactsItem } from "@/app/data";
 import Link from "next/link";
 import { MdDirections } from "react-icons/md";
 
-// Animation variants
+// Animation variants - Fixed for mobile responsiveness
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -17,7 +17,7 @@ const containerVariants = {
 };
 
 const headerVariants = {
-    hidden: { opacity: 0, y: -30 },
+    hidden: { opacity: 0, y: -20 },
     visible: {
         opacity: 1,
         y: 0,
@@ -29,7 +29,7 @@ const headerVariants = {
 };
 
 const socialCardVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: 20 },
+    hidden: { opacity: 0, scale: 0.9, y: 15 },
     visible: {
         opacity: 1,
         scale: 1,
@@ -41,11 +41,12 @@ const socialCardVariants = {
     }
 };
 
+// Fixed: Removed x transform that causes horizontal overflow on mobile
 const formVariants = {
-    hidden: { opacity: 0, x: 50 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
         opacity: 1,
-        x: 0,
+        y: 0,
         transition: {
             duration: 0.6,
             ease: "easeOut"
@@ -54,7 +55,7 @@ const formVariants = {
 };
 
 const formFieldVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 },
     visible: {
         opacity: 1,
         y: 0,
@@ -65,12 +66,12 @@ const formFieldVariants = {
     }
 };
 
+// Fixed: Removed scale transform that causes layout issues
 const mapVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.95 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
         opacity: 1,
         y: 0,
-        scale: 1,
         transition: {
             duration: 0.7,
             ease: "easeOut"
@@ -79,7 +80,7 @@ const mapVariants = {
 };
 
 const buttonVariants = {
-    hidden: { opacity: 0, y: -20 },
+    hidden: { opacity: 0, y: -15 },
     visible: {
         opacity: 1,
         y: 0,
@@ -93,29 +94,30 @@ const buttonVariants = {
 
 export const Contacts = () => {
     return (
-        <section className="margin spacing">
+        <section className="margin spacing overflow-x-hidden">
             <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 gap-3"
+                className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-3"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-50px" }}
             >
-                <div className="flex flex-col justify-between h-full">
+                <div className="flex flex-col justify-between h-full gap-8 md:gap-0">
                     <motion.div variants={headerVariants}>
-                        <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
                             Daftar Sekarang!
                         </h2>
-                        <p className="text-gray-600 mb-12">
+                        <p className="text-gray-600 text-sm sm:text-base mb-8 md:mb-12">
                             Tertarik ikut serta menjadi Tenant atau Sponsor di Gema Fest 2026?
-                            <br />
+                            <br className="hidden sm:block" />
+                            <span className="sm:hidden"> </span>
                             Isi form atau hubungi kami melalui sosial media di bawah.
                         </p>
                     </motion.div>
 
                     {/* SOCIAL MEDIA */}
                     <motion.div
-                        className="grid md:grid-cols-4 grid-cols-2 gap-4 md:w-fit"
+                        className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 gap-3 md:gap-4 md:w-fit"
                         variants={containerVariants}
                     >
                         {contactsItem.slice(1, 5).map((el, idx) => (
@@ -123,14 +125,14 @@ export const Contacts = () => {
                                 href={el.link}
                                 key={idx}
                                 variants={socialCardVariants}
-                                whileHover={{ scale: 1.05, y: -5 }}
-                                whileTap={{ scale: 0.95 }}
+                                whileHover={{ scale: 1.03, y: -3 }}
+                                whileTap={{ scale: 0.97 }}
                             >
-                                <div className="md:aspect-square w-full bg-linear-to-tl from-darkColor via-darkColor to-pink-500 to-190% flex flex-col justify-between text-white p-4 rounded-secondary min-h-30 min-w-30 md:h-30 md:w-30">
-                                    <div>
+                                <div className="aspect-square w-full bg-linear-to-tl from-darkColor via-darkColor to-pink-500 to-150% flex flex-col justify-between text-white p-3 sm:p-4 rounded-secondary min-h-[100px] sm:min-h-[120px] md:h-30 md:w-30">
+                                    <div className="text-xl sm:text-2xl">
                                         {el.icon}
                                     </div>
-                                    <p className="font-semibold">
+                                    <p className="font-semibold text-xs sm:text-sm md:text-base">
                                         {el.label}
                                     </p>
                                 </div>
@@ -139,62 +141,65 @@ export const Contacts = () => {
                     </motion.div>
                 </div>
 
-                <motion.div variants={formVariants}>
+                <motion.div 
+                    variants={formVariants}
+                    className="w-full"
+                >
                     {/* FORM */}
                     <motion.form
                         id='form'
-                        className="grid gap-5 rounded-main bg-linear-to-br from-darkColor via-darkColor to-secondaryColor to-180% shadow-mainShadow p-6"
+                        className="grid gap-4 md:gap-5 rounded-main bg-linear-to-br from-darkColor via-darkColor to-secondaryColor shadow-mainShadow p-4 sm:p-6"
                         variants={containerVariants}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
                     >
                         <motion.div className="grid gap-2" variants={formFieldVariants}>
-                            <label className="font-medium text-lightColor">Nama Lengkap / PIC</label>
+                            <label className="font-medium text-lightColor text-sm sm:text-base">Nama Lengkap / PIC</label>
                             <input
                                 type="text"
                                 name='fullname'
                                 required
                                 placeholder="Masukkan nama Anda"
-                                className="border p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 focus:ring-blue-500"
+                                className="border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 focus:ring-blue-500 text-sm sm:text-base"
                             />
                         </motion.div>
 
                         <motion.div className="grid gap-2" variants={formFieldVariants}>
-                            <label className="font-medium text-lightColor">Nama Brand / Bisnis</label>
+                            <label className="font-medium text-lightColor text-sm sm:text-base">Nama Brand / Bisnis</label>
                             <input
                                 type="text"
                                 name='brandname'
                                 required
-                                placeholder="Masukkan nama Anda"
-                                className="border p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 focus:ring-blue-500"
+                                placeholder="Masukkan nama brand Anda"
+                                className="border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 focus:ring-blue-500 text-sm sm:text-base"
                             />
                         </motion.div>
 
                         <motion.div className="grid gap-2" variants={formFieldVariants}>
-                            <label className="font-medium text-lightColor">Email</label>
+                            <label className="font-medium text-lightColor text-sm sm:text-base">Email</label>
                             <input
                                 name='email'
                                 type="email"
                                 required
                                 placeholder="Masukkan email Anda"
-                                className="border p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 focus:ring-blue-500"
+                                className="border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 focus:ring-blue-500 text-sm sm:text-base"
                             />
                         </motion.div>
 
                         <motion.div className="grid gap-2" variants={formFieldVariants}>
-                            <label className="font-medium text-lightColor">Pesan (Opsional)</label>
+                            <label className="font-medium text-lightColor text-sm sm:text-base">Pesan (Opsional)</label>
                             <textarea
                                 name='messages'
-                                required
+                                rows={3}
                                 placeholder="Masukkan pesan Anda"
-                                className="resize-none border p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 focus:ring-blue-500"
+                                className="resize-none border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 focus:ring-blue-500 text-sm sm:text-base"
                             />
                         </motion.div>
 
                         <motion.div className="grid gap-2" variants={formFieldVariants}>
-                            <label className="font-medium text-lightColor">Kategori Pendaftaran</label>
-                            <select className="border p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 text-lightColor focus:ring-blue-500">
+                            <label className="font-medium text-lightColor text-sm sm:text-base">Kategori Pendaftaran</label>
+                            <select className="border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 text-lightColor focus:ring-blue-500 text-sm sm:text-base">
                                 <option value="">-- Pilih --</option>
                                 <option value="tenant">Tenant / UMKM</option>
                                 <option value="sponsor">Sponsor</option>
@@ -204,7 +209,7 @@ export const Contacts = () => {
 
                         <motion.button
                             type="submit"
-                            className="mt-4 w-full bg-thirdColor hover:bg-thirdColor/80 text-black p-3 rounded-xl text-lg font-medium transition-all"
+                            className="mt-2 sm:mt-4 w-full bg-thirdColor hover:bg-thirdColor/80 text-black p-2.5 sm:p-3 rounded-xl text-base sm:text-lg font-medium transition-all"
                             variants={formFieldVariants}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
@@ -212,7 +217,7 @@ export const Contacts = () => {
                             Kirim Pendaftaran
                         </motion.button>
                         <motion.p
-                            className="text-center text-xs text-neutral-400 mt-2"
+                            className="text-center text-[10px] sm:text-xs text-neutral-400 mt-1 sm:mt-2"
                             variants={formFieldVariants}
                         >
                             *Kami akan menghubungi maksimal 1x24 jam setelah formulir dikirim.
@@ -224,13 +229,13 @@ export const Contacts = () => {
             {/* MAPS SECTION */}
             <motion.div
                 id="maps"
-                className="mt-10 shadow-mainShadow rounded-main overflow-hidden"
+                className="mt-8 md:mt-10 shadow-mainShadow rounded-main overflow-hidden"
                 variants={mapVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: true, margin: "-30px" }}
             >
-                <div className="mapouter rounded-3xl overflow-hidden grow h-[50lvh] md:h-[60lvh] w-full">
+                <div className="mapouter rounded-3xl overflow-hidden grow h-[40vh] sm:h-[50vh] md:h-[60vh] w-full">
                     <div className="overflow-hidden rounded-box h-full relative">
                         <iframe
                             className="w-full h-full contrast-100"
@@ -247,11 +252,12 @@ export const Contacts = () => {
                         >
                             <Link href="https://maps.app.goo.gl/3bCgnUAtDdVzvFQS6">
                                 <motion.button
-                                    className="flex items-center truncate gap-2 px-3 py-2 bg-linear-to-br bg-mainColor/20 duration-300 hover:bg-mainColor hover:text-white backdrop-blur-sm cursor-pointer text-darkColor rounded-b-secondary font-semibold shadow-custom"
-                                    whileHover={{ scale: 1.05, y: 2 }}
-                                    whileTap={{ scale: 0.95 }}
+                                    className="flex items-center truncate gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 bg-mainColor/20 duration-300 hover:bg-mainColor hover:text-white backdrop-blur-sm cursor-pointer text-darkColor rounded-b-secondary font-semibold shadow-custom text-xs sm:text-sm md:text-base"
+                                    whileHover={{ scale: 1.03, y: 2 }}
+                                    whileTap={{ scale: 0.97 }}
                                 >
-                                    <MdDirections /> Bawa Aku Ke Lokasi!
+                                    <MdDirections className="text-base sm:text-lg" /> 
+                                    <span>Bawa Aku Ke Lokasi!</span>
                                 </motion.button>
                             </Link>
                         </motion.div>
