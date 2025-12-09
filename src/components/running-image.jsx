@@ -24,78 +24,79 @@ export const RunningImage = () => {
 
     const showcasePreview = [
         {
-            title: "Food Bazaar & Street Culinary",
-            category: "Culinary",
+            title: "Zona Kuliner",
+            category: "Culiner Festival",
             image:
                 "https://images.unsplash.com/photo-1639664342827-2d68822c55c9?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0",
         },
         {
-            title: "Live Music Performance",
+            title: "Panggung Musik",
             category: "Entertainment",
             image:
                 "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0",
         },
         {
-            title: "Art Exhibition & Creative Showcase",
+            title: "Galeri Seni",
             category: "Art & Culture",
             image:
                 "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.1.0",
         },
         {
-            title: "Community Games & Festival Funzone",
-            category: "Games & Family Activities",
+            title: "Fun Games",
+            category: "Community Activities",
             image:
                 "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0",
         },
         {
-            title: "Craft & Handmade Market",
+            title: "Pasar UMKM",
             category: "Local Business",
             image:
                 "https://images.unsplash.com/photo-1764782979306-1e489462d895?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0",
         },
         {
-            title: "Dance Competition",
+            title: "Kompetisi Tari",
             category: "Performance",
             image:
                 "https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0",
         },
         {
-            title: "Fashion & Cultural Parade",
+            title: "Fashion Parade",
             category: "Culture & Fashion",
             image:
                 "https://images.unsplash.com/photo-1508615039623-a25605d2b022?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0",
         },
         {
-            title: "Startup & Business Booths",
-            category: "Exhibition",
+            title: "Expo Startup",
+            category: "Innovation & Business",
             image:
                 "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.1.0",
         },
         {
-            title: "Kids Workshop & Activity Area",
-            category: "Family & Learning",
+            title: "Kids Zone",
+            category: "Family Area",
             image:
                 "https://images.unsplash.com/photo-1534258936925-c58bed479fcb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0",
         },
         {
-            title: "Outdoor Movie Night",
+            title: "Movie Night",
             category: "Experience",
             image:
                 "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0",
         },
         {
-            title: "Coffee & Beverage Experience",
+            title: "Coffee Fest",
             category: "Lifestyle",
             image:
                 "https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0",
         },
         {
-            title: "Night Market & Festival Lighting",
+            title: "Night Market",
             category: "Festival Experience",
             image:
                 "https://images.unsplash.com/photo-1562088287-bde35a1ea917?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0",
         },
     ];
+
 
     // Triplicate for seamless infinite scroll
     const duplicatedItems = [...showcasePreview, ...showcasePreview, ...showcasePreview];

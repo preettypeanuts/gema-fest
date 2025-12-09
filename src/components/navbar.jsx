@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from "react";
 import { Sparkles, Star, Zap, Gift, Timer, Ticket, X, ChevronLeft, ChevronRight } from "lucide-react";
-import GradualBlurMemo from "./GradualBlur";
 
 // ==================== STICKY BAR ====================
 export const StickyBar = ({ onClose }) => {
@@ -157,7 +156,6 @@ export const Navbar = () => {
         { label: "Event", href: "#event", id: "event" },
         { label: "Faq", href: "#faq", id: "faq" },
         { label: "Contact", href: "#contact", id: "contact" },
-        { label: "Maps", href: "#maps", id: "maps" }
     ];
 
     const [isScrolled, setIsScrolled] = useState(false);
@@ -265,7 +263,7 @@ export const Navbar = () => {
             {/* ========== STICKY BAR ========== */}
             <div
                 className={`
-                    fixed top-0 left-0 right-0 z-[60] overflow-hidden
+                    sticky top-0 left-0 right-0 z-60 overflow-hidden
                     transition-all duration-500 ease-out
                     ${showStickyBar ? "max-h-20 opacity-100" : "max-h-0 opacity-0"}
                 `}
@@ -280,7 +278,7 @@ export const Navbar = () => {
                     left-0 right-0 px-3
                     md:hidden 
                     duration-500 ease-in-out 
-                    fixed z-[100]
+                    fixed z-100
                 `}
             >
                 {/* Container with glass effect */}
@@ -329,27 +327,6 @@ export const Navbar = () => {
                     </nav>
                 </div>
             </div>
-
-            {/* Mobile Bottom Blur */}
-            <section
-                className={`
-                    ${isScrolled ? "translate-y-0" : "translate-y-[300px]"} 
-                    duration-300 fixed md:hidden -bottom-5 left-0 right-0 z-99
-                `}
-            >
-                <GradualBlurMemo
-                    target="parent"
-                    position="bottom"
-                    height="8rem"
-                    strength={1}
-                    divCount={5}
-                    curve="bezier"
-                    exponential={true}
-                    opacity={1}
-                    animated={true}
-                    responsive={true}
-                />
-            </section>
 
             {/* ========== DESKTOP NAVBAR (Top - Below Sticky Bar) ========== */}
             <nav

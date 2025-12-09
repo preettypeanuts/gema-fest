@@ -1,5 +1,6 @@
 "use client"
 import { useState, useEffect, useCallback } from 'react';
+import { motion } from 'framer-motion';
 
 const eventFeatures = [
     {
@@ -44,7 +45,82 @@ const eventFeatures = [
     }
 ];
 
-const AUTOPLAY_DURATION = 5000; // 5 seconds per slide
+const AUTOPLAY_DURATION = 5000;
+
+// Animation variants
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2,
+            delayChildren: 0.1
+        }
+    }
+};
+
+const headerVariants = {
+    hidden: { opacity: 0, y: -30 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.6,
+            ease: "easeOut"
+        }
+    }
+};
+
+const navigationVariants = {
+    hidden: { opacity: 0, x: 30 },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.6,
+            ease: "easeOut"
+        }
+    }
+};
+
+const carouselVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.95 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    }
+};
+
+const titleBadgeVariants = {
+    hidden: { opacity: 0, x: -50, scale: 0.9 },
+    visible: {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        transition: {
+            duration: 0.5,
+            ease: "easeOut"
+        }
+    }
+};
+
+const descriptionVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.5,
+            ease: "easeOut",
+            delay: 0.2
+        }
+    }
+};
 
 export const Events = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -66,7 +142,6 @@ export const Events = () => {
         setProgress(0);
     };
 
-    // Autoplay with progress
     useEffect(() => {
         if (isPaused) return;
 
@@ -89,42 +164,56 @@ export const Events = () => {
         };
     }, [isPaused, currentSlide, nextSlide]);
 
-    // Calculate stroke-dashoffset for circular progress
-    const circumference = 2 * Math.PI * 18; // radius = 18
+    const circumference = 2 * Math.PI * 18;
     const strokeDashoffset = circumference - (progress / 100) * circumference;
 
     return (
-        <section className='margin spacing'>
+        <motion.section 
+            className='margin spacing'
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+        >
             {/* Header: Title + Navigation */}
             <div className="flex items-center justify-between mb-4 md:mb-6">
-                <div className='bg-linear-to-bl from-darkColor via-dafrom-darkColor to-mainColor bg-clip-text text-transparent'>
+                <motion.div 
+                    className='bg-linear-to-bl from-darkColor via-dafrom-darkColor to-mainColor bg-clip-text text-transparent'
+                    variants={headerVariants}
+                >
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-dafrom-darkColor">
                         Event Highlights
                     </h2>
                     <p className="text-sm sm:text-base text-dafrom-darkColor/60 mt-1">
                         Discover what awaits you
                     </p>
-                </div>
+                </motion.div>
 
                 {/* Navigation Buttons with Progress Indicator */}
-                <div className="flex items-center gap-2 sm:gap-3">
-                    <button
+                <motion.div 
+                    className="flex items-center gap-2 sm:gap-3"
+                    variants={navigationVariants}
+                >
+                    <motion.button
                         onClick={prevSlide}
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)}
                         className="relative w-10 h-10 sm:w-12 sm:h-12 bg-darkColor/10 hover:bg-darkColor/20 backdrop-blur-sm text-dabg-darkColor rounded-full transition-all duration-300 flex items-center justify-center border border-dabg-darkColor/20"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
                     >
                         <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
-                    </button>
+                    </motion.button>
 
                     {/* Next Button with Circular Progress */}
-                    <button
+                    <motion.button
                         onClick={nextSlide}
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)}
                         className="relative w-10 h-10 sm:w-12 sm:h-12 bg-darkColor/10 hover:bg-darkColor/20 backdrop-blur-sm text-dabg-darkColor rounded-full transition-all duration-300 flex items-center justify-center border border-dabg-darkColor/20"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
                     >
                         {/* Circular Progress SVG */}
                         <svg
@@ -163,24 +252,25 @@ export const Events = () => {
                         <svg className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
-                    </button>
-                </div>
+                    </motion.button>
+                </motion.div>
             </div>
 
             {/* Carousel Container */}
-            <div
+            <motion.div
                 className="relative w-full h-[70lvh] md:h-[500px] lg:h-[600px] overflow-hidden rounded-main"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
                 onTouchStart={() => setIsPaused(true)}
                 onTouchEnd={() => setIsPaused(false)}
+                variants={carouselVariants}
             >
                 {/* Slides Container */}
                 <div
                     className="flex transition-transform duration-500 ease-out h-full"
                     style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                 >
-                    {eventFeatures.map((feature) => (
+                    {eventFeatures.map((feature, index) => (
                         <div
                             key={feature.id}
                             className="min-w-full h-full relative"
@@ -193,7 +283,13 @@ export const Events = () => {
                             </div>
 
                             {/* Title Badge - Top Left */}
-                            <div className="absolute top-0 left-0 bg-white rounded-br-[35px]">
+                            <motion.div 
+                                className="absolute top-0 left-0 bg-white rounded-br-[35px]"
+                                variants={titleBadgeVariants}
+                                initial="hidden"
+                                animate={currentSlide === index ? "visible" : "hidden"}
+                                key={`title-${currentSlide}`}
+                            >
                                 <div className="bg-white rounded-out-lb-main"></div>
                                 <div className="bg-white rounded-out-tr-main"></div>
                                 <div className="text-sm sm:text-lg font-semibold tracking-wider">
@@ -205,33 +301,46 @@ export const Events = () => {
                                         </h3>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
 
                             {/* Description - Bottom Left */}
-                            <div className='absolute bottom-2 left-2 right-2 sm:right-auto'>
+                            <motion.div 
+                                className='absolute bottom-2 left-2 right-2 sm:right-auto'
+                                variants={descriptionVariants}
+                                initial="hidden"
+                                animate={currentSlide === index ? "visible" : "hidden"}
+                                key={`desc-${currentSlide}`}
+                            >
                                 <p className='p-3 sm:p-4 bg-black/30 rounded-xl sm:rounded-secondary backdrop-blur-md border border-white/10 max-w-sm text-sm sm:text-base text-white/90 leading-relaxed'>
                                     {feature.description}
                                 </p>
-                            </div>
+                            </motion.div>
                         </div>
                     ))}
                 </div>
 
                 {/* Dots Indicator - Desktop Only */}
-                <div className="hidden sm:flex absolute bottom-3 right-3 p-1.5 bg-white/10 backdrop-blur-sm rounded-main z-20 gap-2">
+                <motion.div 
+                    className="hidden sm:flex absolute bottom-3 right-3 p-1.5 bg-white/10 backdrop-blur-sm rounded-main z-20 gap-2"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8, duration: 0.5 }}
+                >
                     {eventFeatures.map((_, index) => (
-                        <button
+                        <motion.button
                             key={index}
                             onClick={() => goToSlide(index)}
                             className={`h-2 rounded-full transition-all duration-300 ${currentSlide === index
                                     ? 'bg-thirdColor w-6'
                                     : 'bg-white/50 hover:bg-white/75 w-2'
                                 }`}
+                            whileHover={{ scale: 1.2 }}
+                            whileTap={{ scale: 0.9 }}
                         />
                     ))}
-                </div>
-            </div>
-        </section>
+                </motion.div>
+            </motion.div>
+        </motion.section>
     );
 };
 

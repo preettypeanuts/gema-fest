@@ -1,9 +1,59 @@
+"use client"
+import { motion } from 'framer-motion';
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
+
+// Animation variants
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15,
+            delayChildren: 0.1
+        }
+    }
+};
+
+const headerVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.6,
+            ease: "easeOut"
+        }
+    }
+};
+
+const accordionContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.3
+        }
+    }
+};
+
+const accordionItemVariants = {
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: {
+            duration: 0.4,
+            ease: "easeOut"
+        }
+    }
+};
 
 export const Faq = () => {
     const faqData = [
@@ -55,46 +105,60 @@ export const Faq = () => {
             question: "Kapan event ini akan berlangsung?",
             answer: "Event akan berlangsung pada 18 Februari - 19 Maret tahun 2026"
         },
-
     ];
 
     return (
         <>
             <section className="margin spacing">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div className='bg-linear-to-bl from-darkColor via-dafrom-darkColor to-mainColor bg-clip-text text-transparent'>
+                <motion.div 
+                    className="grid grid-cols-1 md:grid-cols-2 gap-10"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                >
+                    <motion.div 
+                        className='bg-linear-to-bl from-darkColor via-dafrom-darkColor to-mainColor bg-clip-text text-transparent'
+                        variants={headerVariants}
+                    >
                         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-dafrom-darkColor">
                             FAQs
                         </h1>
                         <p className="capitalize text-sm sm:text-base text-dafrom-darkColor/60 mt-1">
                             Yang perlu kamu ketahui tenatang Gema Fest 2026
                         </p>
-                    </div>
-                    <div>
+                    </motion.div>
+                    <motion.div variants={accordionContainerVariants}>
                         <div>
                             <Accordion type="single" collapsible className="space-y-2">
                                 {faqData.map((el, idx) => (
-                                    <AccordionItem
+                                    <motion.div
                                         key={idx}
-                                        value={`item-${idx}`}
+                                        variants={accordionItemVariants}
+                                        whileHover={{ scale: 1.02 }}
+                                        transition={{ duration: 0.2 }}
                                     >
-                                        <AccordionTrigger
-                                            className={`bg-lightColor px-3 rounded-secondary!`}
-                                        >
-                                            {el.question}
-                                        </AccordionTrigger>
-                                        <AccordionContent
-                                            className={`bg-darkColor text-lightColor px-3 rounded-secondary! pt-3 mt-2`}
-                                        >
-                                            {el.answer}
-                                        </AccordionContent>
-                                    </AccordionItem>
+                                        <AccordionItem value={`item-${idx}`}>
+                                            <AccordionTrigger
+                                                className={`bg-linear-to-br from-darkColor via-darkColor to-thirdColor to-280% px-3 text-white font-medium text-[16px] rounded-secondary!`}
+                                            >
+                                                {el.question}
+                                            </AccordionTrigger>
+                                            <AccordionContent
+                                                className={`bg-darkColor text-lightColor px-3 rounded-secondary! pt-3 mt-2`}
+                                            >
+                                                {el.answer}
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                    </motion.div>
                                 ))}
                             </Accordion>
                         </div>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             </section>
         </>
     )
 }
+
+export default Faq;

@@ -206,7 +206,7 @@ export const Banner = () => {
                                     }
                                 }}
                             >
-                                <a href="https://api.whatsapp.com/send?phone=6281292749915">
+                                <a href="#form">
                                     <motion.button
                                         className="text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 bg-white text-black rounded-full cursor-pointer duration-300"
                                         variants={buttonVariants}

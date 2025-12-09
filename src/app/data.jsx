@@ -8,7 +8,7 @@
             gradient: "from-amber-400 to-orange-500",
             shadowColor: "shadow-orange-500/40",
             label: "Lokasi Event",
-            link: "https://goo.gl/maps/..."
+            link: "https://maps.app.goo.gl/3bCgnUAtDdVzvFQS6"
         },
         {
             icon: (
@@ -19,7 +19,7 @@
             gradient: "from-pink-500 via-rose-500 to-purple-600",
             shadowColor: "shadow-pink-500/40",
             label: "Instagram",
-            link: "https://www.instagram.com/username"
+            link: "https://www.instagram.com/k_oneevent"
         },
         {
             icon: (
@@ -52,6 +52,6 @@
             gradient: "from-green-400 to-emerald-600",
             shadowColor: "shadow-emerald-500/40",
             label: "WhatsApp",
-            link: "https://wa.me/1234567890"
+            link: "https://wa.me/081190071548 "
         }
     ];

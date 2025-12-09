@@ -16,12 +16,12 @@ export const StickyBar = () => {
     const items = [...announcements, ...announcements];
 
     return (
-        <section className="fixed top-0 w-full z-50 overflow-hidden">
-            {/* Gradient background with shimmer */}
-            <div className="relative bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 py-2.5">
+        <section className="sticky top-0 w-full z-50 overflow-hidden">
+            {/* linear background with shimmer */}
+            <div className="relative bg-linear-to-r from-amber-400 via-yellow-300 to-amber-400 py-2.5">
                 {/* Shimmer overlay */}
                 <div 
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                    className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent"
                     style={{
                         animation: "shimmer 3s infinite linear",
                         backgroundSize: "200% 100%"
@@ -79,12 +79,12 @@ export const StickyBar = () => {
                 </div>
 
                 {/* Edge fade effects */}
-                <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-amber-400 to-transparent z-10" />
-                <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-amber-400 to-transparent z-10" />
+                <div className="absolute left-0 top-0 bottom-0 w-16 bg-linear-to-r from-amber-400 to-transparent z-10" />
+                <div className="absolute right-0 top-0 bottom-0 w-16 bg-linear-to-l from-amber-400 to-transparent z-10" />
             </div>
 
             {/* Bottom border glow */}
-            <div className="h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent" />
+            <div className="h-px bg-linear-to-r from-transparent via-amber-500 to-transparent" />
 
             {/* CSS Keyframes */}
             <style jsx>{`
