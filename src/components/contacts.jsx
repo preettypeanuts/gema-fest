@@ -1,10 +1,9 @@
 "use client"
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { contactsItem } from "@/app/data";
-import Link from "next/link";
-import { MdDirections } from "react-icons/md";
 
-// Animation variants - Fixed for mobile responsiveness
+// Animation variants
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -41,7 +40,6 @@ const socialCardVariants = {
     }
 };
 
-// Fixed: Removed x transform that causes horizontal overflow on mobile
 const formVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -66,33 +64,70 @@ const formFieldVariants = {
     }
 };
 
-// Fixed: Removed scale transform that causes layout issues
-const mapVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.7,
-            ease: "easeOut"
-        }
-    }
-};
-
-const buttonVariants = {
-    hidden: { opacity: 0, y: -15 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.5,
-            delay: 0.3,
-            ease: "easeOut"
-        }
-    }
-};
-
 export const Contacts = () => {
+    const [formData, setFormData] = useState({
+        fullname: '',
+        brandname: '',
+        email: '',
+        messages: '',
+        category: '',
+    });
+    const [status, setStatus] = useState('idle'); // idle, loading, success, error
+    const [message, setMessage] = useState('');
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Validation
+        if (!formData.fullname || !formData.brandname || !formData.email || !formData.category) {
+            setStatus('error');
+            setMessage('Mohon lengkapi semua field yang wajib diisi.');
+            return;
+        }
+
+        setStatus('loading');
+        setMessage('');
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setStatus('success');
+                setMessage(data.message);
+                // Reset form
+                setFormData({
+                    fullname: '',
+                    brandname: '',
+                    email: '',
+                    messages: '',
+                    category: '',
+                });
+            } else {
+                setStatus('error');
+                setMessage(data.message || 'Terjadi kesalahan. Silakan coba lagi.');
+            }
+        } catch (error) {
+            setStatus('error');
+            setMessage('Terjadi kesalahan jaringan. Silakan coba lagi.');
+        }
+    };
+
     return (
         <section className="margin spacing overflow-x-hidden">
             <motion.div
@@ -141,49 +176,79 @@ export const Contacts = () => {
                     </motion.div>
                 </div>
 
-                <motion.div 
+                <motion.div
                     variants={formVariants}
                     className="w-full"
                 >
                     {/* FORM */}
                     <motion.form
                         id='form'
+                        onSubmit={handleSubmit}
                         className="grid gap-4 md:gap-5 rounded-main bg-linear-to-br from-darkColor via-darkColor to-secondaryColor shadow-mainShadow p-4 sm:p-6"
                         variants={containerVariants}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
                     >
+                        {/* Success/Error Message */}
+                        {message && (
+                            <motion.div
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className={`p-3 rounded-xl text-sm sm:text-base ${status === 'success'
+                                        ? 'bg-green-500/20 text-green-300 border border-green-500/30'
+                                        : 'bg-red-500/20 text-red-300 border border-red-500/30'
+                                    }`}
+                            >
+                                {status === 'success' ? '✅ ' : '⚠️ '}{message}
+                            </motion.div>
+                        )}
+
                         <motion.div className="grid gap-2" variants={formFieldVariants}>
-                            <label className="font-medium text-lightColor text-sm sm:text-base">Nama Lengkap / PIC</label>
+                            <label className="font-medium text-lightColor text-sm sm:text-base">
+                                Nama Lengkap / PIC <span className="text-red-400">*</span>
+                            </label>
                             <input
                                 type="text"
                                 name='fullname'
+                                value={formData.fullname}
+                                onChange={handleChange}
                                 required
+                                disabled={status === 'loading'}
                                 placeholder="Masukkan nama Anda"
-                                className="border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 focus:ring-blue-500 text-sm sm:text-base"
+                                className="border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 text-lightColor focus:ring-blue-500 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                             />
                         </motion.div>
 
                         <motion.div className="grid gap-2" variants={formFieldVariants}>
-                            <label className="font-medium text-lightColor text-sm sm:text-base">Nama Brand / Bisnis</label>
+                            <label className="font-medium text-lightColor text-sm sm:text-base">
+                                Nama Brand / Bisnis <span className="text-red-400">*</span>
+                            </label>
                             <input
                                 type="text"
                                 name='brandname'
+                                value={formData.brandname}
+                                onChange={handleChange}
                                 required
+                                disabled={status === 'loading'}
                                 placeholder="Masukkan nama brand Anda"
-                                className="border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 focus:ring-blue-500 text-sm sm:text-base"
+                                className="border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 text-lightColor focus:ring-blue-500 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                             />
                         </motion.div>
 
                         <motion.div className="grid gap-2" variants={formFieldVariants}>
-                            <label className="font-medium text-lightColor text-sm sm:text-base">Email</label>
+                            <label className="font-medium text-lightColor text-sm sm:text-base">
+                                Email <span className="text-red-400">*</span>
+                            </label>
                             <input
                                 name='email'
                                 type="email"
+                                value={formData.email}
+                                onChange={handleChange}
                                 required
+                                disabled={status === 'loading'}
                                 placeholder="Masukkan email Anda"
-                                className="border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 focus:ring-blue-500 text-sm sm:text-base"
+                                className="border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 text-lightColor focus:ring-blue-500 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                             />
                         </motion.div>
 
@@ -191,15 +256,27 @@ export const Contacts = () => {
                             <label className="font-medium text-lightColor text-sm sm:text-base">Pesan (Opsional)</label>
                             <textarea
                                 name='messages'
+                                value={formData.messages}
+                                onChange={handleChange}
                                 rows={3}
+                                disabled={status === 'loading'}
                                 placeholder="Masukkan pesan Anda"
-                                className="resize-none border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 focus:ring-blue-500 text-sm sm:text-base"
+                                className="resize-none border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 text-lightColor focus:ring-blue-500 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                             />
                         </motion.div>
 
                         <motion.div className="grid gap-2" variants={formFieldVariants}>
-                            <label className="font-medium text-lightColor text-sm sm:text-base">Kategori Pendaftaran</label>
-                            <select className="border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 text-lightColor focus:ring-blue-500 text-sm sm:text-base">
+                            <label className="font-medium text-lightColor text-sm sm:text-base">
+                                Kategori Pendaftaran <span className="text-red-400">*</span>
+                            </label>
+                            <select
+                                name="category"
+                                value={formData.category}
+                                onChange={handleChange}
+                                required
+                                disabled={status === 'loading'}
+                                className="border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 text-lightColor text-lightColor focus:ring-blue-500 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
                                 <option value="">-- Pilih --</option>
                                 <option value="tenant">Tenant / UMKM</option>
                                 <option value="sponsor">Sponsor</option>
@@ -209,12 +286,23 @@ export const Contacts = () => {
 
                         <motion.button
                             type="submit"
-                            className="mt-2 sm:mt-4 w-full bg-thirdColor hover:bg-thirdColor/80 text-black p-2.5 sm:p-3 rounded-xl text-base sm:text-lg font-medium transition-all"
+                            disabled={status === 'loading'}
+                            className="mt-2 sm:mt-4 w-full bg-thirdColor hover:bg-thirdColor/80 text-black p-2.5 sm:p-3 rounded-xl text-base sm:text-lg font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                             variants={formFieldVariants}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
+                            whileHover={{ scale: status === 'loading' ? 1 : 1.02 }}
+                            whileTap={{ scale: status === 'loading' ? 1 : 0.98 }}
                         >
-                            Kirim Pendaftaran
+                            {status === 'loading' ? (
+                                <>
+                                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                                    </svg>
+                                    Mengirim...
+                                </>
+                            ) : (
+                                'Kirim Pendaftaran'
+                            )}
                         </motion.button>
                         <motion.p
                             className="text-center text-[10px] sm:text-xs text-neutral-400 mt-1 sm:mt-2"
@@ -225,7 +313,6 @@ export const Contacts = () => {
                     </motion.form>
                 </motion.div>
             </motion.div>
-
         </section>
     );
 };
