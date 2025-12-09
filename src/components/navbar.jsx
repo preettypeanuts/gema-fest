@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState, useRef } from "react";
-import { Sparkles, Star, Zap, Gift, Timer, Ticket, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Sparkles, Star, Zap, Gift, Timer, Ticket, X, ChevronLeft, ChevronRight, Clock1 } from "lucide-react";
 
 // ==================== STICKY BAR ====================
 export const StickyBar = ({ onClose }) => {
@@ -12,6 +12,7 @@ export const StickyBar = ({ onClose }) => {
         { icon: Gift, text: "Gratis Media Exposure untuk Early Bird" },
         { icon: Timer, text: "Promo Berakhir dalam Waktu Terbatas" },
         { icon: Ticket, text: "Gema Fest 2026 — Be Part of Something Big" },
+        { icon: Clock1, text: "18 Februari - 19 Maret 2026 | 15:00 - 22:00 WIB" },
     ];
 
     const items = [...announcements, ...announcements];

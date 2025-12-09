@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react"
 import { Coolshape } from "coolshapes-react";
 import { motion } from "framer-motion"
+import { FaCalendar, FaClock } from "react-icons/fa6";
+import Image from "next/image";
 
 const images = [
     "https://images.unsplash.com/photo-1639664342827-2d68822c55c9?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -108,7 +110,7 @@ export const Banner = () => {
     return (
         <>
 
-            <section className="px-4 sm:px-6 md:px-10 pt-10 sm:pt-8 md:pt-10 md:pb-3 space-y-6 sm:space-y-8 md:space-y-10">
+            <section className="px-4 sm:px-6 md:px-10 pt-6 sm:pt-8 md:pt-10 md:pb-3 space-y-6 sm:space-y-8 md:space-y-10">
                 <motion.div
                     className="grid grid-cols-1 lg:grid-cols-10 gap-6 sm:gap-8 md:gap-10 z-100"
                     initial="hidden"
@@ -176,22 +178,51 @@ export const Banner = () => {
 
                     {/* Right Section */}
                     <motion.div
-                        className="col-span-1 lg:col-span-3 flex justify-start lg:justify-end"
+                        className="col-span-1 lg:col-span-3 flex  justify-start lg:justify-end"
                         variants={fadeInRight}
                     >
                         <motion.div
-                            className="flex flex-col justify-between gap-6 sm:gap-8 text-justify p-6 bg-linear-to-br from-darkColor via-darkColor to-mainColor from-50% via-50% rounded-main"
+                            className="grow md:w-fit w-full h-full flex flex-col justify-between gap-6 sm:gap-8 text-justify p-6 bg-linear-to-br from-darkColor via-darkColor to-mainColor from-50% via-50% rounded-main"
                             variants={staggerContainer}
                         >
                             <motion.p
-                                className="text-white text-sm sm:text-base max-w-sm lg:max-w-sm font-medium"
+                                className="text-white text-sm sm:text-base max-w-sm lg:max-w-sm font-bold"
                                 variants={fadeInUp}
                                 initial="hidden"
                                 animate="visible"
                                 transition={{ delay: 0.6 }}
                             >
-                                Nikmati festival kuliner terbesar di Jakarta Timur—hadir dengan tenant pilihan, food street, hiburan ramadhan, dan beragam aktivitas seru sepanjang satu bulan penuh.
+                                <span className="flex items-center gap-2">
+                                    <FaCalendar /> 18 Februari - 19 Maret 2026
+                                </span>
+                                <span className="flex items-center gap-2">
+                                    <FaClock />  15:00 - 22:00 WIB
+                                </span>
                             </motion.p>
+                            <motion.div
+                                className="flex flex-col flex-wrap gap-1"
+                                initial="hidden"
+                                animate="visible"
+                                variants={{
+                                    visible: {
+                                        transition: {
+                                            staggerChildren: 0.1,
+                                            delayChildren: 0.8
+                                        }
+                                    }
+                                }}
+                            >
+                                <span className="font-medium text-white text-xs opacity-80">
+                                    Managed By:
+                                </span>
+                                <Image
+                                    width={80}
+                                    height={80}
+                                    className="grayscale brightness-300"
+                                    src="/kawan.png"
+                                    alt="kawan logo"
+                                />
+                            </motion.div>
 
                             <motion.div
                                 className="flex flex-wrap gap-2 sm:gap-3"
@@ -206,9 +237,9 @@ export const Banner = () => {
                                     }
                                 }}
                             >
-                                <a href="#form">
+                                <a href="https://api.whatsapp.com/send?phone=6281292749915">
                                     <motion.button
-                                        className="text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 bg-white text-black rounded-full cursor-pointer duration-300"
+                                        className="text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 w-full bg-white text-black rounded-full cursor-pointer duration-300"
                                         variants={buttonVariants}
                                         whileHover="hover"
                                         whileTap="tap"
@@ -218,7 +249,7 @@ export const Banner = () => {
                                 </a>
                                 <a href="#event">
                                     <motion.button
-                                        className="text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 bg-black/10 border border-neutral-400/20 text-white backdrop-blur-sm rounded-full cursor-pointer duration-300"
+                                        className="text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 w-full bg-black/10 border border-neutral-400/20 text-white backdrop-blur-sm rounded-full cursor-pointer duration-300"
                                         variants={buttonVariants}
                                         whileHover="hover"
                                         whileTap="tap"

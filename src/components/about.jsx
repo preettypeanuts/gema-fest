@@ -1,5 +1,7 @@
 'use client'
 import { motion } from "framer-motion";
+import { Calendar } from "lucide-react";
+import { FaCalendar, FaClock } from "react-icons/fa6";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -150,7 +152,26 @@ export const About = () => {
                         viewport={{ once: true }}
                         transition={{ delay: 1, duration: 0.5 }}
                     >
-                        {[" Kuliner", " Spot Foto", " Live Music", "Festival"].map((tag, i) => (
+                        <motion.span
+                            className="truncate flex items-center gap-2 px-4 py-2 bg-linear-to-r from-mainColor to-secondaryColor text-white font-bold rounded-full text-sm uppercase tracking-wider border border-amber-200 shadow-sm"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            whileHover={{ scale: 1.05, boxShadow: "0 4px 15px rgba(251, 191, 36, 0.3)" }}
+                            transition={{ delay: 1 + 1 * 0.1, duration: 0.3 }}
+                        >
+                            <FaCalendar /> 18 Februari - 19 Maret 2026
+                        </motion.span>
+                        <motion.span
+                            className="truncate flex items-center gap-2 px-4 py-2 bg-linear-to-r from-mainColor to-secondaryColor text-white font-bold rounded-full text-sm uppercase tracking-wider border border-amber-200 shadow-sm"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            whileHover={{ scale: 1.05, boxShadow: "0 4px 15px rgba(251, 191, 36, 0.3)" }}
+                            transition={{ delay: 1 + 1 * 0.1, duration: 0.3 }}
+                        > <FaClock /> 15:00 - 22:00 WIB
+                        </motion.span>
+                        {["Kuliner", " Spot Foto", " Live Music", "Festival"].map((tag, i) => (
                             <motion.span
                                 key={tag}
                                 className="px-4 py-2 bg-linear-to-r from-darkColor to-darkColor text-white rounded-full text-sm font-medium border border-amber-200 shadow-sm"
