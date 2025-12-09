@@ -1,3 +1,5 @@
+import { IoMail } from "react-icons/io5";
+
     export const contactsItem = [
         {
             icon: (
@@ -53,5 +55,18 @@
             shadowColor: "shadow-emerald-500/40",
             label: "WhatsApp",
             link: "https://api.whatsapp.com/send/?phone=081190071548"
-        }
+        },
+        {
+            icon: <IoMail/>,
+            gradient: "from-violet-400 to-purple-600",
+            shadowColor: "shadow-violet-500/40",
+            label: "Mail",
+            link: "mailto:admin@kawanevent.co.id"
+        },
     ];
+
+    export const mails = [
+        {
+
+        }
+    ]

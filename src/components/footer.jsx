@@ -47,10 +47,9 @@ export const Footer = () => {
             variants={containerVariants}
             className="m-4 md:m-10 bg-linear-to-br from-darkColor via-darkColor to-mainColor to-170% p-4 md:p-10 rounded-main mb-20 md:mb-10"
         >
-            <div className="mx-auto grid md:grid-cols-3 gap-10">
-
+            <div className="mx-auto grid md:grid-cols-10 gap-10">
                 {/* BRAND */}
-                <motion.div variants={itemVariants} className="flex flex-col gap-4">
+                <motion.div variants={itemVariants} className="col-span-4 flex flex-col gap-4">
                     <motion.div
                         variants={logoVariants}
                         className="flex md:flex-row flex-row items-center gap-2"
@@ -62,63 +61,86 @@ export const Footer = () => {
                             src="/kawan.png"
                             alt="kawan logo"
                         />
-                   
+
                     </motion.div>
-                    <h3 className="text-lg font-bold text-white">PT. UBITECH INOVASI INDONESIA </h3> 
-                    <h3 className="text-2xl font-bold text-white">Gema Fest 2026</h3> 
+                    <h3 className="text-lg font-bold text-white">PT. UBITECH INOVASI INDONESIA </h3>
+                    <h3 className="text-2xl font-bold text-white">Gema Fest 2026</h3>
                     <p className="text-sm text-neutral-200 leading-relaxed">
                         Festival kuliner, hiburan, UMKM, dan kolaborasi kreatif.
                         Bergabunglah menjadi bagian dari perayaan terbesar tahun ini.
                     </p>
                 </motion.div>
-
-                {/* NAVIGATION */}
-                <motion.div variants={itemVariants}>
-                    <h4 className="font-semibold mb-4 text-lg text-white">Navigasi</h4>
-                    <ul className="flex flex-col gap-3 text-neutral-200 text-sm">
-                        {["Tentang Event", "Daftar Tenant", "Paket Sponsor", "FAQ", "Kontak"].map((item, idx) => (
-                            <motion.li
-                                key={idx}
-                                initial={{ opacity: 0, x: -10 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.3 + idx * 0.1, duration: 0.3 }}
-                            >
-                                <a
-                                    href={`#${item.toLowerCase().replace(" ", "-")}`}
-                                    className="hover:text-baseColor transition"
+                <div className="grid md:grid-cols-2 col-span-6">
+                    {/* NAVIGATION */}
+                    <motion.div variants={itemVariants}>
+                        <h4 className="font-semibold mb-4 text-lg text-white">Navigasi</h4>
+                        <ul className="flex flex-col gap-3 text-neutral-200 text-sm">
+                            {["Tentang Event", "Daftar Tenant", "Paket Sponsor", "FAQ", "Kontak"].map((item, idx) => (
+                                <motion.li
+                                    key={idx}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.3 + idx * 0.1, duration: 0.3 }}
                                 >
-                                    {item}
-                                </a>
-                            </motion.li>
-                        ))}
-                    </ul>
-                </motion.div>
-
-                {/* SOCIALS */}
-                <motion.div variants={itemVariants}>
-                    <h4 className="font-semibold mb-4 text-lg text-white">Sosial Media</h4>
-                    <ul className="grid gap-3 text-sm">
-                        {contactsItem.map((item, idx) => (
-                            <motion.li
-                                key={idx}
-                                initial={{ opacity: 0, x: -10 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.3 + idx * 0.1, duration: 0.3 }}
-                            >
-                                <a
-                                
-                                    href={item.link}
-                                    target="_blank"
-                                    className="text-neutral-200 hover:text-baseColor transition"
+                                    <a
+                                        href={`#${item.toLowerCase().replace(" ", "-")}`}
+                                        className="hover:text-baseColor transition"
+                                    >
+                                        {item}
+                                    </a>
+                                </motion.li>
+                            ))}
+                        </ul>
+                    </motion.div>
+                    {/* SOCIALS */}
+                    <motion.div variants={itemVariants}>
+                        <h4 className="font-semibold mb-4 text-lg text-white">Sosial Media</h4>
+                        <ul className="grid gap-3 text-sm">
+                            {contactsItem.map((item, idx) => (
+                                <motion.li
+                                    key={idx}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.3 + idx * 0.1, duration: 0.3 }}
                                 >
-                                    {item.label}
-                                </a>
-                            </motion.li>
-                        ))}
-                    </ul>
-                </motion.div>
+                                    <a
+
+                                        href={item.link}
+                                        target="_blank"
+                                        className="text-neutral-200 hover:text-baseColor transition"
+                                    >
+                                        {item.label}
+                                    </a>
+                                </motion.li>
+                            ))}
+                        </ul>
+                    </motion.div>
+                    {/* Mails */}
+                    {/* <motion.div variants={itemVariants}>
+                        <h4 className="font-semibold mb-4 text-lg text-white">CONTACT</h4>
+                        <ul className="flex flex-col gap-3 text-neutral-200 text-sm">
+                            {["Tentang Event", "Daftar Tenant", "Paket Sponsor", "FAQ", "Kontak"].map((item, idx) => (
+                                <motion.li
+                                    key={idx}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.3 + idx * 0.1, duration: 0.3 }}
+                                >
+                                    <a
+                                        href={`#${item.toLowerCase().replace(" ", "-")}`}
+                                        className="hover:text-baseColor transition"
+                                    >
+                                        {item}
+                                    </a>
+                                </motion.li>
+                            ))}
+                        </ul>
+                    </motion.div> */}
+                </div>
+
 
             </div>
 
