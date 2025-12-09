@@ -120,7 +120,7 @@ export const Contacts = () => {
                     >
                         {contactsItem.slice(1, 5).map((el, idx) => (
                             <motion.a
-                                href=""
+                                href={el.link}
                                 key={idx}
                                 variants={socialCardVariants}
                                 whileHover={{ scale: 1.05, y: -5 }}
@@ -153,6 +153,7 @@ export const Contacts = () => {
                             <label className="font-medium text-lightColor">Nama Lengkap / PIC</label>
                             <input
                                 type="text"
+                                name='fullname'
                                 required
                                 placeholder="Masukkan nama Anda"
                                 className="border p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 focus:ring-blue-500"
@@ -163,6 +164,7 @@ export const Contacts = () => {
                             <label className="font-medium text-lightColor">Nama Brand / Bisnis</label>
                             <input
                                 type="text"
+                                name='brandname'
                                 required
                                 placeholder="Masukkan nama Anda"
                                 className="border p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 focus:ring-blue-500"
@@ -172,6 +174,7 @@ export const Contacts = () => {
                         <motion.div className="grid gap-2" variants={formFieldVariants}>
                             <label className="font-medium text-lightColor">Email</label>
                             <input
+                                name='email'
                                 type="email"
                                 required
                                 placeholder="Masukkan email Anda"
@@ -182,6 +185,7 @@ export const Contacts = () => {
                         <motion.div className="grid gap-2" variants={formFieldVariants}>
                             <label className="font-medium text-lightColor">Pesan (Opsional)</label>
                             <textarea
+                                name='messages'
                                 required
                                 placeholder="Masukkan pesan Anda"
                                 className="resize-none border p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 focus:ring-blue-500"

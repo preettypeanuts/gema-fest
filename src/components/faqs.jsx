@@ -7,7 +7,6 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion"
 
-// Animation variants
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -108,56 +107,69 @@ export const Faq = () => {
     ];
 
     return (
-        <>
-            <section className="margin spacing">
+        <section className="margin spacing px-4 sm:px-6 md:px-8">
+            <motion.div 
+                className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                {/* Header Section */}
                 <motion.div 
-                    className="grid grid-cols-1 md:grid-cols-2 gap-10"
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
+                    className="bg-linear-to-bl from-darkColor via-darkColor to-mainColor bg-clip-text text-transparent text-center md:text-left"
+                    variants={headerVariants}
                 >
-                    <motion.div 
-                        className='bg-linear-to-bl from-darkColor via-dafrom-darkColor to-mainColor bg-clip-text text-transparent'
-                        variants={headerVariants}
-                    >
-                        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-dafrom-darkColor">
-                            FAQs
-                        </h1>
-                        <p className="capitalize text-sm sm:text-base text-dafrom-darkColor/60 mt-1">
-                            Yang perlu kamu ketahui tenatang Gema Fest 2026
-                        </p>
-                    </motion.div>
-                    <motion.div variants={accordionContainerVariants}>
-                        <div>
-                            <Accordion type="single" collapsible className="space-y-2">
-                                {faqData.map((el, idx) => (
-                                    <motion.div
-                                        key={idx}
-                                        variants={accordionItemVariants}
-                                        whileHover={{ scale: 1.02 }}
-                                        transition={{ duration: 0.2 }}
-                                    >
-                                        <AccordionItem value={`item-${idx}`}>
-                                            <AccordionTrigger
-                                                className={`bg-linear-to-br from-darkColor via-darkColor to-thirdColor to-280% px-3 text-white font-medium text-[16px] rounded-secondary!`}
-                                            >
-                                                {el.question}
-                                            </AccordionTrigger>
-                                            <AccordionContent
-                                                className={`bg-darkColor text-lightColor px-3 rounded-secondary! pt-3 mt-2`}
-                                            >
-                                                {el.answer}
-                                            </AccordionContent>
-                                        </AccordionItem>
-                                    </motion.div>
-                                ))}
-                            </Accordion>
-                        </div>
-                    </motion.div>
+                    <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-darkColor">
+                        FAQs
+                    </h1>
+                    <p className="capitalize text-xs sm:text-sm md:text-base text-darkColor/60 mt-1 max-w-md mx-auto md:mx-0">
+                        Yang perlu kamu ketahui tentang Gema Fest 2026
+                    </p>
                 </motion.div>
-            </section>
-        </>
+
+                {/* Accordion Section */}
+                <motion.div 
+                    className="w-full"
+                    variants={accordionContainerVariants}
+                >
+                    <Accordion type="single" collapsible className="space-y-2 sm:space-y-3">
+                        {faqData.map((el, idx) => (
+                            <motion.div
+                                key={el.id}
+                                variants={accordionItemVariants}
+                                whileHover={{ scale: 1.01 }}
+                                whileTap={{ scale: 0.99 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                <AccordionItem value={`item-${idx}`} className="border-none">
+                                    <AccordionTrigger
+                                        className="bg-linear-to-br from-darkColor via-darkColor to-thirdColor to-280% 
+                                            px-3 sm:px-4 py-3 sm:py-4
+                                            text-white font-medium 
+                                            text-sm sm:text-[15px] md:text-base
+                                            text-left leading-snug
+                                            rounded-secondary!
+                                            [&>svg]:shrink-0 [&>svg]:ml-2 [&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-5 sm:[&>svg]:h-5"
+                                    >
+                                        {el.question}
+                                    </AccordionTrigger>
+                                    <AccordionContent
+                                        className="bg-darkColor text-lightColor 
+                                            px-3 sm:px-4 py-3
+                                            text-xs sm:text-sm md:text-base
+                                            leading-relaxed
+                                            rounded-secondary! mt-2"
+                                    >
+                                        {el.answer}
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </motion.div>
+                        ))}
+                    </Accordion>
+                </motion.div>
+            </motion.div>
+        </section>
     )
 }
 

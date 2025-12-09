@@ -30,7 +30,7 @@
             gradient: "from-slate-800 via-slate-900 to-black",
             shadowColor: "shadow-slate-800/40",
             label: "TikTok",
-            link: "https://www.tiktok.com/@username"
+            link: "https://www.tiktok.com/@k_oneevent?_r=1&_t=ZS-924KISoefEi"
         },
         {
             icon: (
@@ -41,7 +41,7 @@
             gradient: "from-blue-500 to-blue-700",
             shadowColor: "shadow-blue-500/40",
             label: "Facebook",
-            link: "https://www.facebook.com/username"
+            link: "https://www.facebook.com/share/1ACDUxyCAy/"
         },
         {
             icon: (
