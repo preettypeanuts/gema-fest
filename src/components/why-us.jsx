@@ -47,7 +47,7 @@ export default function HighlightSection() {
                         className="flex flex-col md:p-5 p-7 bg-linear-to-br from-darkColor via-darkColor to-150% to-secondaryColor h-[40lvh] md:h-[65lvh] rounded-main relative overflow-hidden justify-between group"
                     >
                         <Coolshape
-                            className="absolute -right-15 top-1/2 -translate-y-1/2 size-40 group-active:scale-1000 md:size-70 text-primary mb-4 group-hover:scale-400 group-hover:rotate-50 group-hover:spin-slow group-hover:saturate-150 group-hover:blur-2xl duration-500 z-0"
+                            className="absolute -right-15 top-1/2 -translate-y-1/2 size-40 group-active:scale-1000 group-active:blur-3xl md:size-70 text-primary mb-4 group-hover:scale-400 group-hover:rotate-50 group-hover:spin-slow group-hover:saturate-150 group-hover:blur-2xl duration-500 z-0"
                         />
                         <h3 className="font-semibold text-3xl md:text-4xl font-heading bg-linear-to-br from-white via-white to-emerald-600 bg-clip-text text-transparent z-10 relative">
                             {item.title}
