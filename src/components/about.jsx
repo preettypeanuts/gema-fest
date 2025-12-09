@@ -83,12 +83,6 @@ const FloatingIcon = ({ children, delay = 0 }) => (
 export const About = () => {
     return (
         <section className="relative">
-            <FloatingIcon delay={0}><span className="absolute top-20 left-10">🌙</span></FloatingIcon>
-            <FloatingIcon delay={0.2}><span className="absolute top-32 right-20">⭐</span></FloatingIcon>
-            <FloatingIcon delay={0.4}><span className="absolute bottom-40 left-20">🕌</span></FloatingIcon>
-            <FloatingIcon delay={0.6}><span className="absolute bottom-20 right-10">✨</span></FloatingIcon>
-            <FloatingIcon delay={0.8}><span className="absolute top-1/2 right-32">🎉</span></FloatingIcon>
-
             <motion.div
                 className="absolute inset-0 opacity-10"
                 initial={{ backgroundPosition: "0% 0%" }}

@@ -168,15 +168,16 @@ export const Events = () => {
     const strokeDashoffset = circumference - (progress / 100) * circumference;
 
     return (
-        <motion.section 
+        <motion.section
             className='margin spacing'
             variants={containerVariants}
+            whileInView="visible"
             initial="hidden"
-            animate="visible"
+            viewport={{ once: true, margin: "-100px" }}
         >
             {/* Header: Title + Navigation */}
             <div className="flex items-center justify-between mb-4 md:mb-6">
-                <motion.div 
+                <motion.div
                     className='bg-linear-to-bl from-darkColor via-dafrom-darkColor to-mainColor bg-clip-text text-transparent'
                     variants={headerVariants}
                 >
@@ -189,7 +190,7 @@ export const Events = () => {
                 </motion.div>
 
                 {/* Navigation Buttons with Progress Indicator */}
-                <motion.div 
+                <motion.div
                     className="flex items-center gap-2 sm:gap-3"
                     variants={navigationVariants}
                 >
@@ -283,7 +284,7 @@ export const Events = () => {
                             </div>
 
                             {/* Title Badge - Top Left */}
-                            <motion.div 
+                            <motion.div
                                 className="absolute top-0 left-0 bg-white rounded-br-[35px]"
                                 variants={titleBadgeVariants}
                                 initial="hidden"
@@ -304,7 +305,7 @@ export const Events = () => {
                             </motion.div>
 
                             {/* Description - Bottom Left */}
-                            <motion.div 
+                            <motion.div
                                 className='absolute bottom-2 left-2 right-2 sm:right-auto'
                                 variants={descriptionVariants}
                                 initial="hidden"
@@ -320,7 +321,7 @@ export const Events = () => {
                 </div>
 
                 {/* Dots Indicator - Desktop Only */}
-                <motion.div 
+                <motion.div
                     className="hidden sm:flex absolute bottom-3 right-3 p-1.5 bg-white/10 backdrop-blur-sm rounded-main z-20 gap-2"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -331,8 +332,8 @@ export const Events = () => {
                             key={index}
                             onClick={() => goToSlide(index)}
                             className={`h-2 rounded-full transition-all duration-300 ${currentSlide === index
-                                    ? 'bg-thirdColor w-6'
-                                    : 'bg-white/50 hover:bg-white/75 w-2'
+                                ? 'bg-thirdColor w-6'
+                                : 'bg-white/50 hover:bg-white/75 w-2'
                                 }`}
                             whileHover={{ scale: 1.2 }}
                             whileTap={{ scale: 0.9 }}

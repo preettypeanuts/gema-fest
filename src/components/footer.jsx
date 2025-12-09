@@ -45,7 +45,7 @@ export const Footer = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={containerVariants}
-            className="m-4 md:m-10 bg-linear-to-br from-darkColor via-darkColor to-mainColor to-170% p-4 md:p-10 rounded-main"
+            className="m-4 md:m-10 bg-linear-to-br from-darkColor via-darkColor to-mainColor to-170% p-4 md:p-10 rounded-main mb-20 md:mb-0"
         >
             <div className="mx-auto grid md:grid-cols-3 gap-10">
 
@@ -53,7 +53,7 @@ export const Footer = () => {
                 <motion.div variants={itemVariants} className="flex flex-col gap-4">
                     <motion.div
                         variants={logoVariants}
-                        className="flex md:flex-row flex-row justify-center md:justify-start items-center gap-2"
+                        className="flex md:flex-row flex-row items-center gap-2"
                     >
                         <Image
                             width={80}
@@ -62,15 +62,10 @@ export const Footer = () => {
                             src="/kawan.png"
                             alt="kawan logo"
                         />
-                        <Image
-                            width={80}
-                            height={80}
-                            className="grayscale brightness-300"
-                            src="/ge.png"
-                            alt="gema fest 2026 logo"
-                        />
+                   
                     </motion.div>
-                    <h3 className="text-2xl font-bold text-white">Gema Fest 2026</h3>
+                    <h3 className="text-lg font-bold text-white">PT. UBITECH INOVASI INDONESIA </h3> 
+                    <h3 className="text-2xl font-bold text-white">Gema Fest 2026</h3> 
                     <p className="text-sm text-neutral-200 leading-relaxed">
                         Festival kuliner, hiburan, UMKM, dan kolaborasi kreatif.
                         Bergabunglah menjadi bagian dari perayaan terbesar tahun ini.
