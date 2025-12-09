@@ -6,6 +6,7 @@ import { Faq } from "@/components/faqs";
 import Events from "@/components/event";
 import HighlightSection from "@/components/why-us";
 import { SponsorList } from "@/components/sponsor";
+import { Maps } from "@/components/maps";
 
 // ============ METADATA SEO ============
 export const metadata = {
@@ -268,7 +269,7 @@ const jsonLd = {
 export default function Home() {
   return (
     <>
-    
+
       <Banner />
       <RunningImage />
 
@@ -288,10 +289,14 @@ export default function Home() {
         <Faq />
       </section>
 
-      <SponsorList/>
+      <SponsorList />
 
       <section id="contact">
         <Contacts />
+      </section>
+
+      <section id="maps">
+        <Maps />
       </section>
     </>
   );

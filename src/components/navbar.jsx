@@ -147,6 +147,7 @@ export const Navbar = () => {
         { label: "Event", href: "#event", id: "event" },
         { label: "Faq", href: "#faq", id: "faq" },
         { label: "Contact", href: "#contact", id: "contact" },
+        { label: "Maps", href: "#maps", id: "maps" },
     ];
 
     const [isScrolled, setIsScrolled] = useState(false);
@@ -266,17 +267,14 @@ export const Navbar = () => {
             <div
                 className={`
                     ${isScrolled ? "bottom-6" : "bottom-4"} 
-                    left-0 right-0 px-3
+                    left-0 right-0 px-4
                     md:hidden 
                     duration-500 ease-in-out 
                     fixed z-100
                 `}
             >
                 {/* Container with glass effect */}
-                <div className="relative bg-black/70 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-2xl shadow-black/50 py-1 px-1 overflow-hidden">
-
-                    {/* Ambient glow */}
-                    <div className="absolute inset-0 bg-linear-to-r from-amber-500/5 via-transparent to-amber-500/5 pointer-events-none" />
+                <div className="relative bg-black/50 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-2xl shadow-black/50 py-1 px-1 overflow-hidden">
 
                     {/* Scroll indicators */}
                     <ScrollIndicator
