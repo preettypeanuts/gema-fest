@@ -135,7 +135,7 @@ export const Contacts = () => {
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: true, margin: "-100px" }}
             >
                 <div className="flex flex-col justify-between h-full gap-8 md:gap-0">
                     <motion.div variants={headerVariants}>
