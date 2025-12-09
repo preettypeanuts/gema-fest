@@ -275,7 +275,7 @@ export const Contacts = () => {
                                 onChange={handleChange}
                                 required
                                 disabled={status === 'loading'}
-                                className="border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 text-lightColor text-lightColor focus:ring-blue-500 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="border p-2.5 sm:p-3 rounded-xl focus:ring-2 placeholder:text-neutral-300 text-lightColor focus:ring-blue-500 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 <option value="">-- Pilih --</option>
                                 <option value="tenant">Tenant / UMKM</option>
