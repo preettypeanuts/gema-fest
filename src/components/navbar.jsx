@@ -83,16 +83,6 @@ const NavItem = ({ item, isActive, isMobile, itemRef }) => {
                         }
                     `}
                 >
-                    {/* Active glow effect */}
-                    {isActive && (
-                        <div className="absolute inset-0 bg-amber-400/40 rounded-2xl blur-xl -z-10 animate-pulse" />
-                    )}
-
-                    {/* Dot indicator for active */}
-                    {isActive && (
-                        <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-amber-400 rounded-full shadow-lg shadow-amber-400/50" />
-                    )}
-
                     <span className="relative uppercase whitespace-nowrap">{item.label}</span>
                 </div>
             </a>
