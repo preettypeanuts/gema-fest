@@ -95,7 +95,7 @@ export const Maps = () => {
         <>
             {/* MAPS SECTION */}
             <motion.div
-                className="margin spacing shadow-mainShadow rounded-main overflow-hidden"
+                className="margin spacing rounded-main overflow-hidden"
                 variants={mapVariants}
                 initial="hidden"
                 whileInView="visible"
