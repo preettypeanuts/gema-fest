@@ -182,7 +182,7 @@ export const Banner = () => {
                         variants={fadeInRight}
                     >
                         <motion.div
-                            className="grow md:w-fit w-full h-full flex flex-col justify-between gap-6 sm:gap-8 text-justify p-6 bg-linear-to-br from-darkColor via-darkColor to-mainColor from-50% via-50% rounded-main"
+                            className="relative grow md:w-fit w-full h-full flex flex-col justify-between gap-6 sm:gap-8 text-justify p-6 bg-linear-to-br from-darkColor via-darkColor to-mainColor from-50% via-50% rounded-main"
                             variants={staggerContainer}
                         >
                             <motion.p
@@ -199,6 +199,7 @@ export const Banner = () => {
                                     <FaClock />  15:00 - 22:00 WIB
                                 </span>
                             </motion.p>
+                         
                             <motion.div
                                 className="flex flex-col flex-wrap gap-1"
                                 initial="hidden"
@@ -237,7 +238,7 @@ export const Banner = () => {
                                     }
                                 }}
                             >
-                                <a href="https://api.whatsapp.com/send?phone=6281292749915">
+                                <a href="https://api.whatsapp.com/send?phone=6281190071548">
                                     <motion.button
                                         className="text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 w-full bg-white text-black rounded-full cursor-pointer duration-300"
                                         variants={buttonVariants}

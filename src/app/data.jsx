@@ -54,7 +54,7 @@ import { IoMail } from "react-icons/io5";
             gradient: "from-green-400 to-emerald-600",
             shadowColor: "shadow-emerald-500/40",
             label: "WhatsApp",
-            link: "https://api.whatsapp.com/send/?phone=081190071548"
+            link: "https://api.whatsapp.com/send?phone=6281190071548"
         },
         {
             icon: <IoMail/>,
